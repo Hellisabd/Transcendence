@@ -1,0 +1,58 @@
+services:
+  # Service backend pour Django
+  backend:
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
+    container_name: django_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/home/django/app
+    environment:
+      - DEBUG=True
+      - DJANGO_DB_HOST=db
+      - DJANGO_DB_PORT=5432
+      - DJANGO_DB_NAME=your_db_name
+      - DJANGO_DB_USER=your_db_user
+      - DJANGO_DB_PASSWORD=your_db_password
+    depends_on:
+      - db
+    networks:
+      - app_network
+
+  # Service base de données PostgreSQL
+  db:
+    image: postgres:13
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: your_db_name
+      POSTGRES_USER: your_db_user
+      POSTGRES_PASSWORD: your_db_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app_network
+
+  # (Optionnel) Un service pour gérer les migrations Django, exécute les migrations de la base de données
+  migrate:
+    container_name: django_migrate
+    command: ["python", "manage.py", "migrate"]
+    depends_on:
+      - backend
+    image : django_backend
+    environment:
+      - DJANGO_DB_HOST=bgrosjea
+      - DJANGO_DB_PORT=5432
+      - DJANGO_DB_NAME=TR_database
+      - DJANGO_DB_USER=admin
+      - DJANGO_DB_PASSWORD=admin
+    networks:
+      - app_network
+
+volumes:
+  postgres_data:
+
+networks:
+  app_network:
+    driver: bridge
