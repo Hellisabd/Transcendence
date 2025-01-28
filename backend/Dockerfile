@@ -14,11 +14,14 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+RUN pip install djangorestframework
+
 # Définir le répertoire de travail (pas de `chown` ici)
 WORKDIR /home/django/app
 
 # Copier les fichiers en tant que l'utilisateur courant du conteneur
 COPY --chown=django:django backend/app/. .
+RUN chown -R django:django /home/django/app
 
 # Passer à l'utilisateur non-root pour installer les dépendances
 USER django
@@ -26,6 +29,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copier le reste du projet
 COPY --chown=django:django . .
+
 
 # Exposer le port utilisé par Django
 EXPOSE 8000

@@ -36,7 +36,10 @@ services:
       context: .
       dockerfile: ./backend/Dockerfile
     container_name: django_migrate
-    command: ["python", "manage.py", "migrate"]
+    command: >
+      bash -c "./wait-for-db.sh && 
+               python manage.py makemigrations && 
+               python manage.py migrate"
     depends_on:
       - db
     env_file:
