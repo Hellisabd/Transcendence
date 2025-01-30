@@ -4,24 +4,24 @@ Module 1: Use a Framework as backend.
 --------------------------------------------------------------------
 Module 1.5(for 0.5): Use a database for the backend -and more.
 --------------------------------------------------------------------
-Module 2.5: Store the score of a tournament in the Blockchain.
+Module 2.5: Designing the Backend as Microservices.
 --------------------------------------------------------------------
 Module 3.5: Replacing Basic Pong with Server-Side Pong and Imple-menting an API.
 --------------------------------------------------------------------
-Module 4:(for 0.5): Game customization 
-		-brouillard de guerre.
-		-Multiball.
-		-inversion controle.
-		-.
-		-.
-		-.
---------------------------------------------------------------------
-Module 4: Add Another Game with User History and Matchmaking.
---------------------------------------------------------------------
-Module 6: Introduce an AI Opponent.
---------------------------------------------------------------------
-Module 7: Remote players
+Module 4.5: Remote players
 --------------------------------------------------------------------
 
 BONUS:
 #make salto-arriere
+
+
+
+
+
+
+Choix perso : 
+--------------------------------------------------------------------
+Module 5.5: Add Another Game with User History and Matchmaking.
+--------------------------------------------------------------------
+Module 6.5: Store the score of a tournament in the Blockchain.
+--------------------------------------------------------------------
