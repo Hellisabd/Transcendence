@@ -1,2 +1,2 @@
-./myproject/db.sqlite3
+./core/db.sqlite3
 .env

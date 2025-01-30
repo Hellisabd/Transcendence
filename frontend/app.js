@@ -1,44 +1,26 @@
-document.addEventListener("DOMContentLoaded", () => {
-	const app = document.getElementById("app");
+function navigateTo(page) {
+	const contentDiv = document.getElementById("content");
   
-	// Gestion des routes
-	const routes = {
-	  home: `
-		<h2>Bienvenue sur la SPA</h2>
-		<p>Cliquez sur "Tâches" pour voir la liste des tâches.</p>
-	  `,
-	  tasks: async () => {
-		const tasks = await fetchTasks();
-		return `
-		  <h2>Liste des Tâches</h2>
-		  <ul>
-			${tasks.map(task => `<li>${task.title} - ${task.completed ? '✅' : '❌'}</li>`).join('')}
-		  </ul>
-		`;
-	  },
-	};
+	// Vider le contenu actuel
+	contentDiv.innerHTML = '';
   
-	// Fonction pour récupérer les tâches via l'API Django
-	async function fetchTasks() {
-	  try {
-		const response = await fetch("http://localhost:8000/api/tasks/");
-		return response.ok ? response.json() : [];
-	  } catch (error) {
-		console.error("Erreur lors de la récupération des tâches :", error);
-		return [];
-	  }
-	}
-  
-	// Fonction pour afficher une vue
-	async function navigate(route) {
-	  app.innerHTML = typeof routes[route] === "function" ? await routes[route]() : routes[route];
-	}
-  
-	// Gestion des clics sur les liens
-	document.getElementById("link-home").addEventListener("click", () => navigate("home"));
-	document.getElementById("link-tasks").addEventListener("click", () => navigate("tasks"));
-  
-	// Charger la vue par défaut
-	navigate("home");
-  });
-  
+	// Utiliser Fetch API pour récupérer le contenu du serveur
+	fetch(`${page}/`)
+	  .then(response => response.text())
+	  .then(html => {
+		contentDiv.innerHTML = html;
+		window.history.pushState({ page: page }, page, `/${page}`);
+	  })
+	  .catch(error => console.error('Erreur de chargement de la page:', error));
+  }
+  window.onpopstate = function(event) {
+    if (event.state) {
+        // Utilise la valeur dans event.state pour charger la page appropriée
+        navigateTo(event.state.page);
+    }
+};
+
+const initialPage = window.location.pathname.slice(1); // Extrait le nom de la page depuis l'URL
+if (initialPage) {
+  navigateTo(initialPage); // Charge la page en fonction de l'URL initiale
+}
