@@ -12,12 +12,3 @@ def bonjour_monsieur(request):
 
 def bonjour_madame(request):
     return render(request, 'bonjour_madame.html')
-
-
-def get_page(request, page):
-    if page == 'get_page/pong_game':
-        return render(request, 'pong_game.html')
-    elif page == 'get_page/bonjour_monsieur':
-        return render(request, 'bonjour_monsieur.html')
-    elif page == 'get_page/bonjour_madame':
-        return render(request, 'bonjour_madame.html')

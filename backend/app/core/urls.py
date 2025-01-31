@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 	path('api/', include('api.urls')),
 	path('', index, name='home'),
+	path('index/', index, name='home'),
 	path('pong_game/', pong_game, name='pong_game'),
     path('bonjour_monsieur/', bonjour_monsieur, name='bonjour_monsieur'),
     path('bonjour_madame/', bonjour_madame, name='bonjour_madame'),
