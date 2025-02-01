@@ -17,6 +17,7 @@ services:
       - db
     networks:
       - app_network
+      - blockchain_network
 
   # Service base de données PostgreSQL
   db:
@@ -30,6 +31,21 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - app_network
+
+  ganache:
+      build: 
+        context: .
+        dockerfile : ./Blockchain/Dockerfile # Répertoire où tu as ton Dockerfile
+      container_name: ganache
+      ports:
+        - "8545:8545"
+      volumes:
+        - ./Blockchain/smartContract:/home/Blockchain/
+      networks:
+        - blockchain_network
+      environment:
+        - NETWORK_ID=5777
+        - GAS_LIMIT=8000000
 
   # (Optionnel) Un service pour gérer les migrations Django, exécute les migrations de la base de données
   migrate:
@@ -53,4 +69,6 @@ volumes:
 
 networks:
   app_network:
+    driver: bridge
+  blockchain_network:
     driver: bridge

@@ -141,3 +141,17 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",  # Si ton frontend est servi depuis Django
     "http://localhost:5500",  # Si tu ouvres ton `index.html` via un serveur local (ex: Live Server de VS Code)
 ]
+
+# BlockChain
+
+from web3 import Web3
+
+# Récupérer l'URL du provider depuis les variables d'environnement
+web3_provider_url = "http://ganache:8545"  # Le service "ganache" est défini dans Docker Compose
+web3 = Web3(Web3.HTTPProvider(web3_provider_url))
+
+try:
+    web3.eth.getBlock('latest')  # Récupère le dernier bloc pour vérifier la connexion
+    print("Connexion à Ethereum réussie.")
+except Exception as e:
+    print(f"Erreur de connexion : {e}")

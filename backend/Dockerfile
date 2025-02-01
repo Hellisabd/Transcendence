@@ -12,9 +12,11 @@ RUN apt-get update && apt-get install -y \
     gcc \
     libpq-dev \
     build-essential \
+    curl \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN pip install djangorestframework
+RUN pip install web3
 
 # Définir le répertoire de travail (pas de `chown` ici)
 WORKDIR /home/django/app
