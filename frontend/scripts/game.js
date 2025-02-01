@@ -155,23 +155,3 @@ function initializeGame() {
         console.error("Erreur : Le canvas n'a pas été trouvé.");
     }
 }
-
-// document.addEventListener("DOMContentLoaded", function() {
-//     const canvas = document.getElementById("pongCanvas");
-//     if (canvas) {
-//         console.log("Canvas trouvé, initialisation du jeu...");
-//         initializeGame();
-//     } else {
-//         console.error("Erreur : Canvas non trouvé au chargement de la page.");
-//     }
-// });
-
-document.addEventListener("DOMContentLoaded", function() {
-    console.log("Page complètement chargée, initialisation du jeu...");
-    initializeGame();
-});
-
-// window.onload = function() {
-//     console.log("Page complètement chargée");
-//     initializeGame();
-// };
