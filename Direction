@@ -1,11 +1,3 @@
-Mandatory:
-
-Module 1: Use a Framework as backend.
---------------------------------------------------------------------
-Module 1.5(for 0.5): Use a database for the backend -and more.
---------------------------------------------------------------------
-Module 2.5: Designing the Backend as Microservices.
---------------------------------------------------------------------
 Module 3.5: Replacing Basic Pong with Server-Side Pong and Imple-menting an API.
 --------------------------------------------------------------------
 Module 4.5: Remote players

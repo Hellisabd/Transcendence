@@ -10,6 +10,7 @@ services:
     command: ["./wait-for-db.sh", "python", "manage.py", "runserver", "0.0.0.0:8000"]
     volumes:
       - ./backend/app:/home/django/app
+      - ./frontend:/home/django/app/frontend
     env_file:
       - .env
     depends_on:

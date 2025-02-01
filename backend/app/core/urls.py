@@ -1,5 +1,5 @@
 """
-URL configuration for myproject project.
+URL configuration for core project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -15,10 +15,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from game import views
+from django.urls import path, include
+from core.views import index, pong_game, bonjour_madame, bonjour_monsieur
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('game/', views.game),
+	path('api/', include('api.urls')),
+	path('', index, name='home'),
+	path('index/', index, name='home'),
+	path('pong_game/', pong_game, name='pong_game'),
+    path('bonjour_monsieur/', bonjour_monsieur, name='bonjour_monsieur'),
+    path('bonjour_madame/', bonjour_madame, name='bonjour_madame'),
 ]
