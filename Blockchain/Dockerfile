@@ -13,15 +13,18 @@ RUN groupadd -g ${GROUP_ID} satoshi && \
 # Définir le répertoire de travail
 WORKDIR /home/Blockchain/
 
-RUN truffle init
-
 # Copier les fichiers du projet
 COPY --chown=satoshi:satoshi Blockchain/smartContract/. .
 
 RUN chown -R satoshi:satoshi /home/Blockchain
 
+RUN mkdir truffle &&  chown -R satoshi:satoshi /home/Blockchain/truffle
+
+WORKDIR /home/Blockchain/truffle
+
 USER satoshi
 
+RUN truffle init
 # Expose le port utilisé par Ganache
 EXPOSE 8545
 
